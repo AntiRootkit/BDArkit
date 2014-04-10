@@ -1,0 +1,38 @@
+TARGETNAME=BDKitFile
+TARGETTYPE=LIBRARY
+TARGETPATH=..\Output\BinRelease
+
+MSC_WARNING_LEVEL=/W3 /WX
+	
+LINKER_FLAGS= \
+		/MAP /MAPINFO:EXPORTS /opt:lbr
+
+!IF $(FREEBUILD)
+LINK_TIME_CODE_GENERATION=1
+!ENDIF
+
+# Additional defines for the C/C++ preprocessor
+C_DEFINES= 	\
+		$(C_DEFINES) \
+		/DUNICODE \
+		/D_UNICODE
+	
+INCLUDES=	\
+		$(BASEDIR)\inc;\
+		$(BASEDIR)\inc\ddk;\
+		..\Pub\Include;\
+		..\Pub\Interface;\
+		..\..\Pub\Include;
+		
+SOURCES= \
+		BDKitFile.c\
+		FileSystem.c\
+		BDKitFileDelete.c\
+		BDKitFileReadWrite.c\
+		BDKitFileOpenClose.c\
+		BDKitFileDenyAccess.c\
+		BDKitFileDenyAccess.c\
+		BDKitFileAttributes.c\
+		BDKitFileRebootActions.c\
+
+		

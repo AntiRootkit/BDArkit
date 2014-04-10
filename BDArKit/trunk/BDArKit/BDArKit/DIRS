@@ -1,0 +1,9 @@
+DIRS= \
+	Utility\
+	FileSign\
+	Algorithm\
+	MiniFilter\
+	BDKitFile\
+	BDKitProcess\
+	Main
+     

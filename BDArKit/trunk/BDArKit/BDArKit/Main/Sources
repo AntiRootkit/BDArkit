@@ -1,0 +1,46 @@
+!IF $(386)
+TARGETNAME=BDArKit
+!ELSEIF $(AMD64)
+TARGETNAME=BDArKit
+!ENDIF
+
+	
+TARGETTYPE=DRIVER
+TARGETPATH=..\Output\BinRelease
+DRIVERTYPE=FS
+
+MSC_WARNING_LEVEL=/W3 /WX
+	
+LINKER_FLAGS= \
+    /MAP /MAPINFO:EXPORTS /opt:lbr
+	
+!IF $(FREEBUILD)
+LINK_TIME_CODE_GENERATION=1
+!ENDIF
+
+# Additional defines for the C/C++ preprocessor
+C_DEFINES= 	\
+    $(C_DEFINES) \
+    /DUNICODE \
+    /D_UNICODE
+	
+INCLUDES=	\
+		$(BASEDIR)\inc;\
+		$(BASEDIR)\inc\ddk;\
+		..\Pub\Include;\
+		..\Pub\Interface;\
+		..\..\Pub\Include;
+		
+TARGETLIBS= \
+		$(IFSKIT_LIB_PATH)\fltMgr.lib	\
+		$(TARGETPATH)\*\FileSign.lib	\
+		$(TARGETPATH)\*\Algorithm.lib	\
+		$(TARGETPATH)\*\MiniFilter.lib	\
+		$(TARGETPATH)\*\Utility.lib		\
+		$(TARGETPATH)\*\BDKitFile.lib	\
+		$(TARGETPATH)\*\BDKitProcess.lib
+	
+SOURCES= \
+		Main.c\
+		BDArKit.rc\
+		DriverDispatch.c\
