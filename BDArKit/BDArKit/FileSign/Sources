@@ -1,0 +1,41 @@
+TARGETNAME=FileSign
+TARGETTYPE=LIBRARY
+TARGETPATH=..\Output\BinRelease
+
+MSC_WARNING_LEVEL=/W3 /WX
+	
+LINKER_FLAGS= \
+		/MAP /MAPINFO:EXPORTS /opt:lbr
+
+!IF $(FREEBUILD)
+LINK_TIME_CODE_GENERATION=1
+!ENDIF
+
+# Additional defines for the C/C++ preprocessor
+C_DEFINES= 	\
+		$(C_DEFINES) \
+		/DUNICODE \
+		/D_UNICODE
+	
+INCLUDES=	\
+		$(BASEDIR)\inc;\
+		$(BASEDIR)\inc\ddk;\
+		..\Pub\Include;\
+		..\Pub\Interface;
+		
+SOURCES= \
+		krsa.c\
+		md5c.c\
+		mp_sub.c\
+		mp_div.c\
+		mp_add.c\
+		mp_cmp.c\
+		mp_mul.c\
+		mp_shft.c\
+		mp_init.c\
+		FileSign.c\
+		mp_decode.c\
+		mp_encode.c\
+		mp_expmod.c\
+
+		

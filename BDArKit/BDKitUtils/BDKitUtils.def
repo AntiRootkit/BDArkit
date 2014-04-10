@@ -1,0 +1,4 @@
+LIBRARY	"BDKitUtils"
+
+EXPORTS
+    GetBDKitInterface     PRIVATE
